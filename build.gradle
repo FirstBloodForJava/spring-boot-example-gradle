@@ -18,6 +18,18 @@ dependencyManagement {
     }
 }
 
+// 是否打成jar包
+jar {
+    enabled = true
+}
+
+// 构建成可执行jar包，添加的后缀boot(org.springframework.boot插件启动才可配置)
+/*bootJar {
+    classifier = 'boot'
+    // 可执行main的类全路径名称
+    mainClassName = 'com.oycm.SpringBootExample'
+}*/
+
 
 repositories {
     mavenCentral()
