@@ -1,12 +1,22 @@
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '2.2.7.RELEASE'
-    id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+    // 只定义这个插件的版本不使用插件
+    id 'org.springframework.boot' version '2.2.7.RELEASE' apply false
 }
+
+apply plugin: 'io.spring.dependency-management'
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
 
+
+dependencyManagement {
+    imports {
+        mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Brixton.RELEASE'
+        // spring boot依赖管理
+        mavenBom 'org.springframework.boot:spring-boot-dependencies:2.2.7.RELEASE'
+    }
+}
 
 
 repositories {
