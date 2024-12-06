@@ -50,3 +50,33 @@ dependencies {
 tasks.named('test') {
     useJUnitPlatform()
 }
+
+// 定义build命令在 clean之后运行
+build.mustRunAfter clean
+
+// 自定义这个task,名称buildJar，依赖build,和clean之后执行。前面定义了build在clean之后执行
+tasks.register('buildJar', GradleBuild) {
+    dependsOn build, clean
+
+    doLast {
+        String jarName = "$rootProject.name"
+        delete(file("jar"))
+        mkdir("jar")
+        String jarPath = "build/libs"
+        // 复制到一个目录下,并重命名
+        copy {
+            from(jarPath)
+            into  "jar"
+            rename {
+                String fileName -> jarName + '.jar'
+            }
+        }
+        // 删除build及里面的所有东西
+        file("build").deleteDir();
+
+    }
+}
+
+task buildJar1 (type: GradleBuild, dependsOn: [build, clean]) {
+
+}
