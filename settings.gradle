@@ -1,1 +1,7 @@
+// 配置项目远程仓库地址
+pluginManagement {
+    repositories {
+        maven { url 'https://maven.aliyun.com/repository/public' }
+    }
+}
 rootProject.name = 'spring-boot-example-gradle'
